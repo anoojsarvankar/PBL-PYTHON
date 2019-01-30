@@ -1,0 +1,4 @@
+easy1=first=second=third=fourth=1
+easy2=first=second=third=fourth=1
+easy3=first=second=third=fourth=1
+easy4=first=second=third=fourth=1

@@ -1,0 +1,4 @@
+medium1=first=second=third=fourth=1
+medium2=first=second=third=fourth=1
+medium3=first=second=third=fourth=1
+medium4=1=2=3=4=1
