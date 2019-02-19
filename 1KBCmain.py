@@ -2,12 +2,15 @@ import random
 import time
 resultset=[]
 splitlines=[]
+num_lines=0
 def OpenDB(level):
     global resultset
+    global num_lines
     if(level==1):
         file=open('QuestionDB1.txt','r')
         f=file.read()
         temp=f.split('\n')
+        num_lines=len(temp)
         file.close()
         for i in temp:
             resultset.append(i.split('='))
@@ -15,6 +18,7 @@ def OpenDB(level):
         file = open('QuestionDB2.txt', 'r')
         f = file.read()
         temp = f.split('\n')
+        num_lines = len(temp)
         file.close()
         for i in temp:
             resultset.append(i.split('='))
@@ -22,6 +26,7 @@ def OpenDB(level):
         file = open('QuestionDB3.txt', 'r')
         f = file.read()
         temp = f.split('\n')
+        num_lines = len(temp)
         file.close()
         for i in temp:
             resultset.append(i.split('='))
@@ -40,7 +45,8 @@ repeated=0
 def QstnChooser():
     global repeated
     global qstnnodb
-    temp1=random.randint(0,3)
+    global num_lines
+    temp1=random.randint(0,num_lines-1)
     if(Checkrepeat(temp1)==1):
         repeated = 0
         qstnnodb=temp1
