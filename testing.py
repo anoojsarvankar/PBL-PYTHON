@@ -5,6 +5,8 @@ from tkinter import messagebox
 from pygame import mixer
 from PIL import ImageTk, Image
 #Creating GUI
+from pygame.event import wait
+
 root = Tk()
 Questionans__window_width=1000
 Questionans__window_height=700
@@ -148,25 +150,25 @@ def AnswerCheck(temp1,selection):
         messagebox.showinfo('Correct','SAI JAWAB')
     else:
         messagebox.showinfo('Wrong','LOST')
+
+
 def QuestUI(temp1):
     # IMPORTANT! QSTN OBJECT HERE!
-    quest = Label(root, width=40, height=2)
-    quest.config(text=resultset[temp1][0], bg='RoyalBlue1', fg='White', font=('Tempus Sans ITC', 14))
-    quest.place_configure(x=400, y=200)
-    r1 = Button(root, text=resultset[temp1][1], bg='RoyalBlue1', fg='black', width=20, font=('Tempus Sans ITC', 14),
-                command=lambda: AnswerCheck(temp1, 1))
+    r1 = Button(root, bg='RoyalBlue1', fg='black', width=20, font=('Tempus Sans ITC', 14),command=lambda: AnswerCheck(temp1, 1))
     r1.place_configure(x=350, y=300)
-    r2 = Button(root, text=resultset[temp1][2], bg='RoyalBlue1', fg='black', width=20, font=('Tempus Sans ITC', 14),
-                command=lambda: AnswerCheck(temp1, 2))
+    r2 = Button(root, bg='RoyalBlue1', fg='black', width=20, font=('Tempus Sans ITC', 14),command=lambda: AnswerCheck(temp1, 2))
     r2.place_configure(x=700, y=300)
-    r3 = Button(root, text=resultset[temp1][3], bg='RoyalBlue1', fg='black', width=20, font=('Tempus Sans ITC', 14),
-                command=lambda: AnswerCheck(temp1, 3))
+    r3 = Button(root, bg='RoyalBlue1', fg='black', width=20, font=('Tempus Sans ITC', 14),command=lambda: AnswerCheck(temp1, 3))
     r3.place_configure(x=350, y=350)
-    r4 = Button(root, text=resultset[temp1][4], bg='RoyalBlue1', fg='black', width=20, font=('Tempus Sans ITC', 14),
-                command=lambda: AnswerCheck(temp1, 4))
+    r4 = Button(root, bg='RoyalBlue1', fg='black', width=20, font=('Tempus Sans ITC', 14),command=lambda: AnswerCheck(temp1, 4))
     r4.place_configure(x=700, y=350)
-
-
+    quest = Label(root, width=40, height=2)
+    quest.place_configure(x=400, y=200)
+    quest.config(text=resultset[temp1][0],bg='RoyalBlue1', fg='White', font=('Tempus Sans ITC', 14))
+    r1.configure(text=resultset[temp1][1])
+    r2.configure(text=resultset[temp1][2])
+    r3.configure(text=resultset[temp1][3])
+    r4.configure(text=resultset[temp1][4])
 
 
 resultset=[]
@@ -209,31 +211,28 @@ def Checkrepeat(temp):
     else:
         repeatcheck=repeatcheck+[temp]
         return(1)
-qstnnodb=0
 repeated=0
 def QstnChooser():
     global repeated
-    global qstnnodb
     global num_lines
     temp1=random.randint(0,num_lines-1)
     if(Checkrepeat(temp1)==1):
         repeated = 0
         qstnnodb=temp1
-        QuestUI(temp1)
+        QuestUI(qstnnodb)
     else:
         repeated=1
 qstnno=1
 while(qstnno<=10):
     if(qstnno<4):
         OpenDB(1)
-        QstnChooser()
-        root.mainloop()
         if(repeated==1):
             while(repeated!=0):
+                print("inside while")
                 QstnChooser()
-            if(qstnno==4):
-                print("Pehela padaav paar!\n ",qstnno-1,'Lakh Rs\n\n')
-                time.sleep(3)
+        elif(repeated==0):
+            print("HERERERASFDS")
+            QstnChooser()
     if(qstnno==4):
         repeatcheck.clear()
         repeatcheck+=[-1]
@@ -258,3 +257,5 @@ while(qstnno<=10):
         if (repeated == 1):
             while (repeated != 0):
                 QstnChooser()
+
+root.mainloop()
