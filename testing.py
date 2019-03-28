@@ -1,5 +1,6 @@
 import random
 import time
+import tkinter
 from tkinter import *
 from tkinter import messagebox
 from pygame import mixer
@@ -142,15 +143,16 @@ scale = Scale(root, orient=HORIZONTAL, command=set_vol, bg=COLORS[74], fg='black
 
 scale.set(50)
 scale.place(x=80, y=330)
-
+var = tkinter.IntVar()
 def AnswerCheck(temp1,selection):
     if(resultset[temp1][5]==str(selection)):
         global qstnno
         qstnno+=1
+        print(qstnno)
         messagebox.showinfo('Correct','SAI JAWAB')
     else:
         messagebox.showinfo('Wrong','LOST')
-
+    var.set(1)
 
 def QuestUI(temp1):
     # IMPORTANT! QSTN OBJECT HERE!
@@ -169,6 +171,8 @@ def QuestUI(temp1):
     r2.configure(text=resultset[temp1][2])
     r3.configure(text=resultset[temp1][3])
     r4.configure(text=resultset[temp1][4])
+    root.wait_variable(var)
+    print("Out of quest")
 
 
 resultset=[]
