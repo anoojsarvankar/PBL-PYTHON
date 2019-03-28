@@ -107,27 +107,27 @@ frame1 = Frame(root, highlightbackground="red", highlightcolor="red", highlightt
                bd=0)
 frame1.place_configure(x=0, y=398)
 
-l = Label(frame1, text='1.1 Lakh', bg=COLORS[305], relief="groove", fg='White', width=28,
+l1 = Label(frame1, text='1. 25,000 ₹', bg='green', relief="groove", fg='White', width=28,
           font=('Tempus Sans ITC', 14))
-l.pack(side=TOP, fill=BOTH)
-l = Label(frame1, text='2.10 Lakh', bg=COLORS[305], relief="groove", fg='White', font=('Tempus Sans ITC', 14))
-l.pack(side=TOP, expand=YES, fill=BOTH)
-l = Label(frame1, text='3.20 Lakh', bg=COLORS[305], relief="groove", fg='White', font=('Tempus Sans ITC', 14))
-l.pack(side=TOP, expand=YES, fill=BOTH)
-l = Label(frame1, text='4.30 Lakh', bg=COLORS[305], relief="groove", fg='White', font=('Tempus Sans ITC', 14))
-l.pack(side=TOP, expand=YES, fill=BOTH)
-l = Label(frame1, text='5.40 Lakh', bg=COLORS[305], relief="groove", fg='White', font=('Tempus Sans ITC', 14))
-l.pack(side=TOP, expand=YES, fill=BOTH)
-l = Label(frame1, text='6.50 Lakh', bg=COLORS[305], relief="groove", fg='White', font=('Tempus Sans ITC', 14))
-l.pack(side=TOP, expand=YES, fill=BOTH)
-l = Label(frame1, text='7.60 Lakh', bg=COLORS[305], relief="groove", fg='White', font=('Tempus Sans ITC', 14))
-l.pack(side=TOP, expand=YES, fill=BOTH)
-l = Label(frame1, text='8.70 Lakh', bg=COLORS[305], relief="groove", fg='White', font=('Tempus Sans ITC', 14))
-l.pack(side=TOP, expand=YES, fill=BOTH)
-l = Label(frame1, text='9.80 Lakh', bg=COLORS[305], relief="groove", fg='White', font=('Tempus Sans ITC', 14))
-l.pack(side=TOP, expand=YES, fill=BOTH)
-l = Label(frame1, text='10.1 Crore', bg=COLORS[305], relief="groove", fg='White', font=('Tempus Sans ITC', 14))
-l.pack(side=TOP, expand=YES, fill=BOTH)
+l1.pack(side=TOP, fill=BOTH)
+l2 = Label(frame1, text='2. 50,000 ₹', bg=COLORS[305], relief="groove", fg='White', font=('Tempus Sans ITC', 14))
+l2.pack(side=TOP, expand=YES, fill=BOTH)
+l3 = Label(frame1, text='3. 1,00,000 ₹', bg=COLORS[305], relief="groove", fg='White', font=('Tempus Sans ITC', 14))
+l3.pack(side=TOP, expand=YES, fill=BOTH)
+l4 = Label(frame1, text='4.  5,00,000 ₹', bg=COLORS[305], relief="groove", fg='White', font=('Tempus Sans ITC', 14))
+l4.pack(side=TOP, expand=YES, fill=BOTH)
+l5 = Label(frame1, text='5.  10,00,000 ₹', bg=COLORS[305], relief="groove", fg='White', font=('Tempus Sans ITC', 14))
+l5.pack(side=TOP, expand=YES, fill=BOTH)
+l6 = Label(frame1, text='6. 20,00,000 ₹', bg=COLORS[305], relief="groove", fg='White', font=('Tempus Sans ITC', 14))
+l6.pack(side=TOP, expand=YES, fill=BOTH)
+l7 = Label(frame1, text='7. 30,00,000 ₹', bg=COLORS[305], relief="groove", fg='White', font=('Tempus Sans ITC', 14))
+l7.pack(side=TOP, expand=YES, fill=BOTH)
+l8 = Label(frame1, text='8. 40,00,000 ₹', bg=COLORS[305], relief="groove", fg='White', font=('Tempus Sans ITC', 14))
+l8.pack(side=TOP, expand=YES, fill=BOTH)
+l9 = Label(frame1, text='9. 50,00,000 ₹', bg=COLORS[305], relief="groove", fg='White', font=('Tempus Sans ITC', 14))
+l9.pack(side=TOP, expand=YES, fill=BOTH)
+l10 = Label(frame1, text='10. 1 CRORE ₹', bg=COLORS[305], relief="groove", fg='White', font=('Tempus Sans ITC', 14))
+l10.pack(side=TOP, expand=YES, fill=BOTH)
 
 
 
@@ -143,37 +143,68 @@ scale = Scale(root, orient=HORIZONTAL, command=set_vol, bg=COLORS[74], fg='black
 
 scale.set(50)
 scale.place(x=80, y=330)
+#Buttons and question label
+r1 = Button(root,bg='RoyalBlue1', fg='black', width=20, font=('Tempus Sans ITC', 14))
+r1.place_configure(x=350, y=300)
+r2 = Button(root,bg='RoyalBlue1', fg='black', width=20, font=('Tempus Sans ITC', 14))
+r2.place_configure(x=700, y=300)
+r3 = Button(root,bg='RoyalBlue1', fg='black', width=20, font=('Tempus Sans ITC', 14))
+r3.place_configure(x=350, y=350)
+r4 = Button(root,bg='RoyalBlue1',fg='black', width=20, font=('Tempus Sans ITC', 14))
+r4.place_configure(x=700, y=350)
+quest = Label(root,bg='RoyalBlue1', width=40, height=2)
+quest.place_configure(x=400, y=200)
+
+#For 5050lifeline
+lifq=0
+used=0
+def Lifeline5050():
+    tempx=-1
+    global used
+    if(used==1):
+        messagebox.showerror('Sorry','No more attempts left!')
+        return
+    for i in range(0,2):
+        temp=random.randint(1,4)
+        while(str(temp)==resultset[lifq][5] or tempx==temp):
+            temp=random.randint(1,4)
+        if(temp==1):
+            r1.configure(text="")
+        if (temp == 2):
+            r2.configure(text="")
+        if (temp == 3):
+            r3.configure(text="")
+        if (temp == 4):
+            r4.configure(text="")
+        tempx=temp
+        used=1
+
+    rl1.configure(bg='Red',command=print("Used lifeline 3"))
+rl1=Button(root,text="50:50",bg='RoyalBlue1',fg='black', width=20, font=('Tempus Sans ITC', 14),command=lambda: Lifeline5050())
+rl1.place_configure(x=700,y=100)
+
 var = tkinter.IntVar()
 def AnswerCheck(temp1,selection):
     if(resultset[temp1][5]==str(selection)):
         global qstnno
         qstnno+=1
         print(qstnno)
-        messagebox.showinfo('Correct','SAI JAWAB')
+        global lif,lifq
+        lif=selection
+        lifq=temp1
     else:
-        messagebox.showinfo('Wrong','LOST')
+        messagebox.showinfo('Sorry','Wrong Answer\nCorrect answer was: '+resultset[temp1][int(resultset[temp1][5])])
+        exit()
     var.set(1)
 
 def QuestUI(temp1):
     # IMPORTANT! QSTN OBJECT HERE!
-    r1 = Button(root, bg='RoyalBlue1', fg='black', width=20, font=('Tempus Sans ITC', 14),command=lambda: AnswerCheck(temp1, 1))
-    r1.place_configure(x=350, y=300)
-    r2 = Button(root, bg='RoyalBlue1', fg='black', width=20, font=('Tempus Sans ITC', 14),command=lambda: AnswerCheck(temp1, 2))
-    r2.place_configure(x=700, y=300)
-    r3 = Button(root, bg='RoyalBlue1', fg='black', width=20, font=('Tempus Sans ITC', 14),command=lambda: AnswerCheck(temp1, 3))
-    r3.place_configure(x=350, y=350)
-    r4 = Button(root, bg='RoyalBlue1', fg='black', width=20, font=('Tempus Sans ITC', 14),command=lambda: AnswerCheck(temp1, 4))
-    r4.place_configure(x=700, y=350)
-    quest = Label(root, width=40, height=2)
-    quest.place_configure(x=400, y=200)
-    quest.config(text=resultset[temp1][0],bg='RoyalBlue1', fg='White', font=('Tempus Sans ITC', 14))
-    r1.configure(text=resultset[temp1][1])
-    r2.configure(text=resultset[temp1][2])
-    r3.configure(text=resultset[temp1][3])
-    r4.configure(text=resultset[temp1][4])
+    quest.config(text=resultset[temp1][0], fg='White', font=('Tempus Sans ITC', 14))
+    r1.configure(text=resultset[temp1][1],command=lambda: AnswerCheck(temp1, 1))
+    r2.configure(text=resultset[temp1][2],command=lambda: AnswerCheck(temp1, 2))
+    r3.configure(text=resultset[temp1][3],command=lambda: AnswerCheck(temp1, 3))
+    r4.configure(text=resultset[temp1][4],command=lambda: AnswerCheck(temp1, 4))
     root.wait_variable(var)
-    print("Out of quest")
-
 
 resultset=[]
 splitlines=[]
@@ -230,12 +261,18 @@ qstnno=1
 while(qstnno<=10):
     if(qstnno<4):
         OpenDB(1)
+        if(qstnno==2):
+            l1.configure(bg='green yellow')
+            l2.configure(bg='green')
+        if (qstnno == 3):
+            l2.configure(bg='green yellow')
+            l3.configure(bg='green')
+
+        #Questionnaire Begins
         if(repeated==1):
             while(repeated!=0):
-                print("inside while")
                 QstnChooser()
         elif(repeated==0):
-            print("HERERERASFDS")
             QstnChooser()
     if(qstnno==4):
         repeatcheck.clear()
@@ -243,23 +280,42 @@ while(qstnno<=10):
     if (qstnno > 3 and qstnno < 7):
         resultset.clear()
         OpenDB(2)
+        if (qstnno == 4):
+            l3.configure(bg='green yellow')
+            l4.configure(bg='green')
+        if (qstnno == 5):
+            l4.configure(bg='green yellow')
+            l5.configure(bg='green')
+        if (qstnno == 6):
+            l5.configure(bg='green yellow')
+            l6.configure(bg='green')
+        #Questionnaire begins
         QstnChooser()
         if (repeated == 1):
             while (repeated != 0):
                 QstnChooser()
-            if(qstnno==7):
-                print('\n\n\n\n')
-                print("Doosra padaav paar!\n ", qstnno - 1, 'Lakh Rs\n\n')
-                time.sleep(3)
     if (qstnno == 7):
         repeatcheck.clear()
         repeatcheck += [-1]
     if (qstnno > 6 and qstnno <= 10):
         resultset.clear()
         OpenDB(3)
+        if (qstnno == 7):
+            l6.configure(bg='green yellow')
+            l7.configure(bg='green')
+        if (qstnno == 8):
+            l7.configure(bg='green yellow')
+            l8.configure(bg='green')
+        if (qstnno == 9):
+            l8.configure(bg='green yellow')
+            l9.configure(bg='green')
+        if (qstnno == 10):
+            l9.configure(bg='green yellow')
+            l10.configure(bg='green')
         QstnChooser()
         if (repeated == 1):
             while (repeated != 0):
                 QstnChooser()
-
+else:
+    messagebox.showinfo('YEAHH','WINNER WINNER CHICKEN DINNER!')
 root.mainloop()
